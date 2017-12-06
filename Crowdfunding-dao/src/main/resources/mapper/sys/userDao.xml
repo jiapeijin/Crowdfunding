@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD  Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.crowdfunding.dao.sys.UserDao">
+    <sql id="userList">
+    SELECT
+        id AS id,
+        img_head AS imgHead,
+        login_name AS loginName,
+        PASSWORD AS PASSWORD,
+        real_name AS realName,
+        user_card AS userCard,
+        user_sex AS userSex,
+        user_introduction AS userIntroduction,
+        user_address AS userAddress,
+        user_education AS userEducation,
+        phone_one AS phoneOne,
+        phone_two AS phoneTwo,
+        card_face AS cardFace,
+        card_con AS cardCon,
+        email AS email,
+        webo AS webo,
+        boke AS boke,
+        wechart AS wechart,
+        create_date AS createDate,
+        create_user AS createUser,
+        update_date AS updateDate,
+        update_user AS updateUser,
+        del_flag AS delFlag
+    FROM
+        tb_user_info
+</sql>
+    <!--用户列表-->
+    <select id="findUserList" resultType="UserInfo">
+        <include refid="userList"/>
+        where del_flag='0'
+    </select>
+    <select id="findUserByName" resultType="UserInfo">
+        <include refid="userList"/>
+        where del_flag='0'
+        <if test="loginName != null and loginName != ''">
+         and  login_name=${loginName}
+        </if>
+    </select>
+    <!--添加用户-->
+    <insert id="addUser">
+        insert into tb_user_info
+        (
+         id,
+        img_head,
+        login_name,
+        PASSWORD,
+        real_name,
+        user_card,
+        user_sex,
+        user_introduction,
+        user_address,
+        user_education,
+        phone_one,
+        phone_two,
+        card_face,
+        crad_con,
+        email,
+        webo,
+        boke,
+        wechart,
+        create_date,
+        create_user,
+        update_date,
+        update_user,
+        del_flag
+        )
+        values(
+        id,
+        imgHead,
+        loginName,
+        PASSWORD,
+        realName,
+        userCard,
+        userSex,
+        userIntroduction,
+        userAddress,
+        userEducation,
+        phoneOne,
+        phoneTwo,
+        cardFace,
+        cardCon,
+        email,
+        webo,
+        boke,
+        wechart,
+        createDate,
+        createUser,
+        updateDate,
+        updateUser,
+        delFlag
+        )
+    </insert>
+    <!--修改用户-->
+    <update id="editUser">
+    update tb_user_info
+    SET
+        id = #{id},
+        img_head = #{mgHead},
+        login_name = #{loginName},
+        PASSWORD = #{PASSWORD},
+        real_name = #{realName},
+        user_card  = #{userCard},
+        user_sex = #{userSex},
+        user_introduction = #{userIntroduction},
+        user_address = #{userAddress},
+        user_education  = #{userEducation},
+        phone_one = #{phoneOne},
+        phone_two = #{phoneTwo},
+        card_face = #{cardFace},
+        crad_con = #{cardCon},
+        email = #{email},
+        webo = #{webo},
+        boke = #{boke},
+        wechart = #{wechart},
+        create_date = #{createDate},
+        create_user = #{createUser},
+        update_date = #{updateDate},
+        update_user = #{updateUser},
+        del_flag ='0'
+    </update>
+    <!--删除用户-->
+    <update id="delUser">
+        update tb_user_info
+        set del_flag='1'
+        where id=#{id}
+    </update>
+</mapper>

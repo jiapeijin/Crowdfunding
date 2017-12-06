@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>Crowdfunding</artifactId>
+        <groupId>com.osplan</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>Crowdfunding-dao</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+
+    <profiles>
+        <profile>
+            <id>production</id>
+            <properties>
+                <runtime.env>src/main/resources/env/prod</runtime.env>
+            </properties>
+        </profile>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <runtime.env>src/main/resources/env/dev</runtime.env>
+            </properties>
+        </profile>
+        <profile>
+            <id>testing</id>
+            <properties>
+                <runtime.env>src/main/resources/env/testing</runtime.env>
+            </properties>
+        </profile>
+    </profiles>
+
+    <dependencies>
+
+
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-spring</artifactId>
+            <version>1.3.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.0.31</version>
+        </dependency>
+        <dependency>
+            <groupId>com.osplan</groupId>
+            <artifactId>Crowdfunding-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+    <resources>
+        <resource>
+            <directory>${runtime.env}</directory>
+            <filtering>true</filtering>
+        </resource>
+        <resource>
+            <directory>src/main/resources</directory>
+        </resource>
+    </resources>
+
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.1</version>
+            <configuration>
+                <source>1.7</source>
+                <target>1.7</target>
+                <optimize>true</optimize>
+                <showWarnings>true</showWarnings>
+            </configuration>
+        </plugin>
+    </plugins>
+    </build>
+</project>
