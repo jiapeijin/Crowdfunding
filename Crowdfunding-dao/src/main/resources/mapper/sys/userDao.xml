@@ -36,12 +36,18 @@
         <include refid="userList"/>
         where del_flag='0'
     </select>
+    <!--通过用户名查找用户-->
     <select id="findUserByName" resultType="UserInfo">
         <include refid="userList"/>
         where del_flag='0'
         <if test="loginName != null and loginName != ''">
          and  login_name=${loginName}
         </if>
+    </select>
+    <!--登录-->
+    <select id="findUserForLogin" resultType="UserInfo">
+        <include refid="userList"/>
+        where del_flag='0' and login_name=#{loginName} and password=#{password}
     </select>
     <!--添加用户-->
     <insert id="addUser">

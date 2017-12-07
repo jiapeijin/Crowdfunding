@@ -2,6 +2,7 @@ package com.crowdfunding.dao.sys;
 
 
 import com.crowdfunding.entity.sys.UserInfo;
+import com.sun.org.glassfish.gmbal.ParameterNames;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -60,4 +61,14 @@ public interface UserDao {
      * @time 2017/11/15 11:25
      */
     UserInfo findUserByName(@Param("loginName") String loginName);
+    /**
+     * @description
+     * @methodName findUserForLogin
+     * @param loginName loginName
+     * @param password password
+     * @return int
+     * @author lucy [18616735761@163.com]
+     * @time 2017/12/7 16:01
+     */
+    List<UserInfo> findUserForLogin(@Param("loginName") String loginName, @Param("password") String password);
 }

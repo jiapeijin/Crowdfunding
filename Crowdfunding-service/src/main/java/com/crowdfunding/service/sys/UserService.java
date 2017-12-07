@@ -59,4 +59,14 @@ public interface UserService {
      * @time 2017/11/15 11:25
      */
     UserInfo findUserByName(@Param("loginName") String loginName);
+    /**
+     * @description 登录
+     * @methodName findUserForLogin
+     * @param loginName loginName
+     * @param password password
+     * @return int
+     * @author lucy [18616735761@163.com]
+     * @time 2017/12/7 16:06
+     */
+    List<UserInfo> findUserForLogin(@Param("loginName") String loginName,@Param("password") String password);
 }

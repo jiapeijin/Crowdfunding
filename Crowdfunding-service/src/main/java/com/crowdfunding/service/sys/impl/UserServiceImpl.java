@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.swing.text.StyledEditorKit;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -87,5 +88,11 @@ public class UserServiceImpl implements UserService{
     public UserInfo findUserByName(String loginName) {
        return userDao.findUserByName(loginName);
 
+    }
+
+    @Override
+    public List<UserInfo> findUserForLogin(String loginName, String password) {
+        List<UserInfo> list=userDao.findUserForLogin(loginName,password);
+       return list;
     }
 }
