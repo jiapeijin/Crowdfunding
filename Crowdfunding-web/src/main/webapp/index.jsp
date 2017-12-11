@@ -5,7 +5,8 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <script type="text/javascript" src="${ctxStatic}/login/js/jquery-1.9.0.min.js"></script>
-   <script type="text/javascript" src="${ctxStatic}/login/js/login.js"></script>
+    <script type="text/javascript" src="${ctxStatic}/login/js/login.js"></script>
+    <script type="text/javascript" src="${ctxStatic}/dist/js/jquery-validation/dist/jquery.validate.js"></script>
     <link href="${ctxStatic}/login/css/login2.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -23,24 +24,22 @@
         <div class="web_login" id="web_login">
             <div class="login-box">
                 <div class="login_form">
-                    <%--<form id="login_form" class="loginForm">--%><input type="hidden" name="did" value="0"/>
+                    <form id="login_form" class="loginForm"><input type="hidden" name="did" value="0"/>
                         <input type="hidden" name="to" value="log"/>
                         <div class="uinArea" id="uinArea">
                             <label class="input-tips" for="loginName">帐号：</label>
                             <div class="inputOuter" id="uArea">
-                                <input type="text" id="loginName" name="loginName" class="inputstyle"/>
+                                <input type="text" id="loginName" name="loginName" class="inputstyle" placeholder="请输入登录名"/>
                             </div>
                         </div>
                         <div class="pwdArea" id="pwdArea">
                             <label class="input-tips" for="password">密码：</label>
                             <div class="inputOuter" id="pArea">
-                                <input type="password" id="password" name="password" class="inputstyle"/>
+                                <input type="password" id="password" name="password" class="inputstyle" placeholder="请输入密码"/>
                             </div>
                         </div>
                         <div style="padding-left:50px;margin-top:20px;"><input type="button" value="登 录" style="width:150px;"  id="login"class="button_blue"/></div>
-<%--
                     </form>
---%>
                 </div>
             </div>
         </div>
@@ -54,29 +53,35 @@
             <ul class="reg_form" id="reg-ul">
                 <div id="userCue" class="cue">快速注册请注意格式</div>
                 <li>
-                    <label for="user"  class="input-tips2">用户名：</label>
+                    <label for="realName"  class="input-tips2">用户名：</label>
                     <div class="inputOuter2">
-                        <input type="text" id="user" name="user" maxlength="16" class="inputstyle2"/>
+                        <input type="text" id="realName" name="user" maxlength="16" class="inputstyle2"  placeholder="请输入用户名"/>
                     </div>
 
                 </li>
                 <li>
-                    <label for="passwd" class="input-tips2">密码：</label>
+                    <label for="loginNames"  class="input-tips2">登录名：</label>
                     <div class="inputOuter2">
-                        <input type="password" id="passwd"  name="passwd" maxlength="16" class="inputstyle2"/>
+                        <input type="text" id="loginNames" name="loginName" maxlength="16" class="inputstyle2" placeholder="请输入登录名"/>
                     </div>
-                </li>
-                <li>
-                    <label for="passwd2" class="input-tips2">确认密码：</label>
-                    <div class="inputOuter2">
-                        <input type="password" id="passwd2" name="" maxlength="16" class="inputstyle2" />
-                    </div>
-                </li>
-                <li>
-                    <label for="qq" class="input-tips2">QQ：</label>
-                    <div class="inputOuter2">
 
-                        <input type="text" id="qq" name="qq" maxlength="10" class="inputstyle2"/>
+                </li>
+                <li>
+                    <label for="pwd" class="input-tips2">密码：</label>
+                    <div class="inputOuter2">
+                        <input type="password" id="pwd"  name="pwd" maxlength="16" class="inputstyle2" placeholder="请输入密码"/>
+                    </div>
+                </li>
+                <li>
+                    <label for="phone" class="input-tips2">联系电话：</label>
+                    <div class="inputOuter2">
+                        <input type="text" id="phone" name="phone" maxlength="16" class="inputstyle2" placeholder="请输入联系电话"/>
+                    </div>
+                </li>
+                <li>
+                    <label for="email" class="input-tips2">邮箱：</label>
+                    <div class="inputOuter2">
+                        <input type="text" id="email" name="eamil" maxlength="16" class="inputstyle2" placeholder="请输入联系电话"/>
                     </div>
                 </li>
                 <li>
@@ -92,96 +97,76 @@
 </body>
 <script>
     $().ready(function() {
-        var loginName = $("#loginName").val();
-        var password = $("#password").val();
+        jQuery.validator.addMethod("loginName", function(value, element) {
+            var ln=/^[a-zA-Z0-9_]{2,18}$/;
+            return this.optional(element) || (ln.test(value));
+        }, "请输入正确的用户名");
+        $("#login_form").validate({
+            //规则
+            rules: {
+                loginName: {
+                    required:true,
+                    minlength: 1
+                },
+                password:{
+                    required:true,
+                    minlength:1
+                }
+            },
+            //提示语
+            messages: {
+                loginName :{
+                    required:"登录名不能为空"
+                },
+                password: {
+                   required:"密码不能为空"
+                }
+            }
+        });
+    });
+    $().ready(function() {
         $('#login').click(function() {
+            var loginName = $("#loginName").val();
+            var password = $("#password").val();
+            if(!$("#login_form").valid()) {
+                return;
+            }
             $.ajax({
                 url: '${ctx}/login/loginInto',
                 type: 'post',
                 dataType: 'json',
                 data:{"loginName":loginName,"password":password},
                 success: function(data) {
-                    window.location.href="${ctx}/system/userList";
-                    /*if (data.success) {
+                    debugger;
+                    if (data.success == 0) {
                         window.location.href="${ctx}/system/userList";
-                    }else{
-                        alert("用户名或者密码错误！");
-                    }*/
-                }
-            });
-        });
-    });
-
-
-   /* $(document).ready(function() {
-        $('#reg').click(function() {
-            if ($('#user').val() == "") {
-                $('#user').focus().css({
-                    border: "1px solid red",
-                    boxShadow: "0 0 2px red"
-                });
-                $('#userCue').html("<font color='red'><b>×用户名不能为空</b></font>");
-                return false;
-            }
-            if ($('#user').val().length < 4 || $('#user').val().length > 16) {
-                $('#user').focus().css({
-                    border: "1px solid red",
-                    boxShadow: "0 0 2px red"
-                });
-                $('#userCue').html("<font color='red'><b>×用户名位4-16字符</b></font>");
-                return false;
-            }
-            $.ajax({
-                type: reMethod,
-                url: "${ctx}/login/",
-                data: "uid=" + $("#user").val() + '&temp=' + new Date(),
-                dataType: 'html',
-                success: function(result) {
-
-                    if (result.length > 2) {
-                        $('#user').focus().css({
-                            border: "1px solid red",
-                            boxShadow: "0 0 2px red"
-                        });$("#userCue").html(result);
-                        return false;
-                    } else {
-                        $('#user').css({
-                            border: "1px solid #D7D7D7",
-                            boxShadow: "none"
-                        });
+                    }else {
+                        alert("用户名或者密码错误,请重新输入");
                     }
-
                 }
             });
-
-
-            if ($('#passwd').val().length < pwdmin) {
-                $('#passwd').focus();
-                $('#userCue').html("<font color='red'><b>×密码不能小于" + pwdmin + "位</b></font>");
-                return false;
-            }
-            if ($('#passwd2').val() != $('#passwd').val()) {
-                $('#passwd2').focus();
-                $('#userCue').html("<font color='red'><b>×两次密码不一致！</b></font>");
-                return false;
-            }
-
-            var sqq = /^[1-9]{1}[0-9]{4,9}$/;
-            if (!sqq.test($('#qq').val()) || $('#qq').val().length < 5 || $('#qq').val().length > 12) {
-                $('#qq').focus().css({
-                    border: "1px solid red",
-                    boxShadow: "0 0 2px red"
-                });
-                $('#userCue').html("<font color='red'><b>×QQ号码格式不正确</b></font>");return false;
-            } else {
-                $('#qq').css({
-                    border: "1px solid #D7D7D7",
-                    boxShadow: "none"
-                });
-
-            }
-            $('#regUser').submit();
         });
-    });*/
+        $('#reg').click(function(){
+            var realName=$('#realName').val();
+            var loginName=$('#loginNames').val();
+            var password=$('#password').val();
+            var phoneOne=$('#phone').val();
+            var email=$('#email').val();
+            $.ajax({
+                url:'${ctx}/login/registUser',
+                type:'post',
+                dataType:'json',
+                data:{"realName":realName,"loginName":loginName,"password":password,"phoneOne":phoneOne,"email":email},
+                success: function (data) {
+                    if(data.success){
+                        //刷新页面进入登录
+                     window.location.reload();
+                    }else{
+                        alert("添加失败");
+                    }
+                }
+            })
+        })
+    });
 </script>
 </html>

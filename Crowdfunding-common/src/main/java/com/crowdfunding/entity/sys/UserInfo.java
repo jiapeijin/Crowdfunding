@@ -1,18 +1,15 @@
 package com.crowdfunding.entity.sys;
 
+import com.crowdfunding.framework.Base.BaseEntity;
 
 /**
  * 用户信息表
  */
-public class UserInfo{
-    /**
-     * 用户id
-     */
-    public String id;
+public class UserInfo extends BaseEntity<UserInfo> {
     /**
      * 头像
      */
-    public String  img_head;
+    public String imgHead;
     /**
      * 登录名
      */
@@ -78,20 +75,12 @@ public class UserInfo{
      */
     public String wechart;
 
-    public String getId() {
-        return id;
+    public String getImgHead() {
+        return imgHead;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getImg_head() {
-        return img_head;
-    }
-
-    public void setImg_head(String img_head) {
-        this.img_head = img_head;
+    public void setImgHead(String imgHead) {
+        this.imgHead = imgHead;
     }
 
     public String getLoginName() {
@@ -225,7 +214,7 @@ public class UserInfo{
     @Override
     public String toString() {
         return "UserInfo{" +
-                "img_head='" + img_head + '\'' +
+                ", imgHead='" + imgHead + '\'' +
                 ", loginName='" + loginName + '\'' +
                 ", password='" + password + '\'' +
                 ", realName='" + realName + '\'' +

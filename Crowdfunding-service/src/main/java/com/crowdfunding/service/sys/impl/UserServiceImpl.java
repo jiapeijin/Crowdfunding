@@ -2,6 +2,7 @@ package com.crowdfunding.service.sys.impl;
 
 import com.crowdfunding.dao.sys.UserDao;
 import com.crowdfunding.entity.sys.UserInfo;
+import com.crowdfunding.framework.Base.BaseService;
 import com.crowdfunding.framework.Page.PageBean;
 import com.crowdfunding.framework.Page.PaginationContext;
 import com.crowdfunding.service.sys.UserService;
@@ -10,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.swing.text.StyledEditorKit;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,7 +20,7 @@ import java.util.Map;
  */
 @Service
 @Transactional(readOnly = false)
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl extends BaseService implements UserService{
 
     @Autowired
     private UserDao userDao;
@@ -54,6 +54,7 @@ public class UserServiceImpl implements UserService{
     }
     /**
      * @description 修改用户
+     *
      * @methodName editUser
      * @param userInfo userInfo
      * @return int
@@ -89,10 +90,18 @@ public class UserServiceImpl implements UserService{
        return userDao.findUserByName(loginName);
 
     }
-
+    /**
+     * @description
+     * @methodName findUserForLogin
+     * @param loginName loginName
+     * @param password password
+     * @return com.crowdfunding.entity.sys.UserInfo
+     * @author lucy [18616735761@163.com]
+     * @time 2017/12/11 16:21
+     */
     @Override
-    public List<UserInfo> findUserForLogin(String loginName, String password) {
-        List<UserInfo> list=userDao.findUserForLogin(loginName,password);
-       return list;
+    public UserInfo findUserForLogin(String loginName, String password) {
+        UserInfo userInfo=userDao.findUserForLogin(loginName,password);
+        return userInfo;
     }
 }

@@ -5,8 +5,6 @@ import com.crowdfunding.entity.sys.UserInfo;
 import com.crowdfunding.framework.Page.PageBean;
 import org.apache.ibatis.annotations.Param;
 
-import java.util.List;
-
 /**
  * Created by lucy on 2017/11/14.
  */
@@ -50,23 +48,25 @@ public interface UserService {
      * @time 2017/11/14 10:45
      */
     int delUser(@Param("id") String id);
+
     /**
-     * @description 通过名字查询用户信息
-     * @methodName findUserByName
      * @param loginName loginName
      * @return java.util.List<com.crowdfunding.entity.sys.UserInfo>
+     * @description 通过名字查询用户信息
+     * @methodName findUserByName
      * @author lucy [18616735761@163.com]
      * @time 2017/11/15 11:25
      */
     UserInfo findUserByName(@Param("loginName") String loginName);
+
     /**
+     * @param loginName loginName
+     * @param password  password
+     * @return int
      * @description 登录
      * @methodName findUserForLogin
-     * @param loginName loginName
-     * @param password password
-     * @return int
      * @author lucy [18616735761@163.com]
      * @time 2017/12/7 16:06
      */
-    List<UserInfo> findUserForLogin(@Param("loginName") String loginName,@Param("password") String password);
+    UserInfo findUserForLogin(@Param("loginName") String loginName, @Param("password") String password);
 }
