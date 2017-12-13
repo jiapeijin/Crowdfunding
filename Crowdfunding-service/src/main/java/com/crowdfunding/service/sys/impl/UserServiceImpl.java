@@ -7,9 +7,11 @@ import com.crowdfunding.framework.Page.PageBean;
 import com.crowdfunding.framework.Page.PaginationContext;
 import com.crowdfunding.service.sys.UserService;
 import com.github.pagehelper.PageHelper;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 
 import java.util.HashMap;
 import java.util.List;
@@ -49,8 +51,29 @@ public class UserServiceImpl extends BaseService implements UserService{
      * @time 2017/11/14 13:58
      */
     @Override
-    public int addUser(UserInfo userInfo) {
-        return userDao.addUser(userInfo);
+    public Map<String,Object> addUser(UserInfo userInfo) {
+        Map<String,Object> map = new HashMap<String,Object>();
+        //判断是否存在相同的用户名
+        UserInfo user=userDao.findUserByName(userInfo.getLoginName());
+        if(user != null ){
+            //保存失败 ，存在相同用户
+            map.put("false",false);
+        }else{
+            preInsert(userInfo);
+            //未登录前注册  将创建用户和修改用户设置为注册名
+            userInfo.setCreateUser(userInfo.getLoginName());
+            userInfo.setUpdateUser(userInfo.getLoginName());
+            int count=userDao.addUser(userInfo);
+            if(count >0){
+                //保存成功
+                map.put("success",true);
+            }else{
+                //保存失败
+                map.put("fail",false);
+            }
+        }
+
+        return  map;
     }
     /**
      * @description 修改用户
@@ -63,6 +86,7 @@ public class UserServiceImpl extends BaseService implements UserService{
      */
     @Override
     public int editUser(UserInfo userInfo) {
+        preUpdate(userInfo);
         return userDao.editUser(userInfo);
     }
     /**

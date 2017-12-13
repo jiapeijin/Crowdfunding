@@ -5,6 +5,8 @@ import com.crowdfunding.entity.sys.UserInfo;
 import com.crowdfunding.framework.Page.PageBean;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.Map;
+
 /**
  * Created by lucy on 2017/11/14.
  */
@@ -27,7 +29,7 @@ public interface UserService {
      * @author lucy [18616735761@163.com]
      * @time 2017/11/14 10:43
      */
-    int addUser(UserInfo userInfo);
+    Map<String,Object> addUser(UserInfo userInfo);
 
     /**
      * @param userInfo userInfo

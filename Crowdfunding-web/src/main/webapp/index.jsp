@@ -7,7 +7,7 @@
     <script type="text/javascript" src="${ctxStatic}/login/js/jquery-1.9.0.min.js"></script>
     <script type="text/javascript" src="${ctxStatic}/login/js/login.js"></script>
     <script type="text/javascript" src="${ctxStatic}/dist/js/jquery-validation/dist/jquery.validate.js"></script>
-    <link href="${ctxStatic}/login/css/login2.css" rel="stylesheet" type="text/css" />
+    <link href="${ctxStatic}/login/css/login2.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <h1>彩虹投众筹平台管理<sup>V2017</sup></h1>
@@ -15,8 +15,10 @@
 <div class="login" style="margin-top:50px;">
 
     <div class="header">
-        <div class="switch" id="switch"><a class="switch_btn_focus" id="switch_qlogin" href="javascript:void(0);" tabindex="7">快速登录</a>
-            <a class="switch_btn" id="switch_login" href="javascript:void(0);" tabindex="8">快速注册</a><div class="switch_bottom" id="switch_bottom" style="position: absolute; width: 64px; left: 0px;"></div>
+        <div class="switch" id="switch"><a class="switch_btn_focus" id="switch_qlogin" href="javascript:void(0);"
+                                           tabindex="7">快速登录</a>
+            <a class="switch_btn" id="switch_login" href="javascript:void(0);" tabindex="8">快速注册</a>
+            <div class="switch_bottom" id="switch_bottom" style="position: absolute; width: 64px; left: 0px;"></div>
         </div>
     </div>
     <div class="web_qr_login" id="web_qr_login" style="display: block; height: 235px;">
@@ -29,16 +31,20 @@
                         <div class="uinArea" id="uinArea">
                             <label class="input-tips" for="loginName">帐号：</label>
                             <div class="inputOuter" id="uArea">
-                                <input type="text" id="loginName" name="loginName" class="inputstyle" placeholder="请输入登录名"/>
+                                <input type="text" id="loginName" name="loginName" class="inputstyle"
+                                       placeholder="请输入登录名"/>
                             </div>
                         </div>
                         <div class="pwdArea" id="pwdArea">
                             <label class="input-tips" for="password">密码：</label>
                             <div class="inputOuter" id="pArea">
-                                <input type="password" id="password" name="password" class="inputstyle" placeholder="请输入密码"/>
+                                <input type="password" id="password" name="password" class="inputstyle"
+                                       placeholder="请输入密码"/>
                             </div>
                         </div>
-                        <div style="padding-left:50px;margin-top:20px;"><input type="button" value="登 录" style="width:150px;"  id="login"class="button_blue"/></div>
+                        <div style="padding-left:50px;margin-top:20px;"><input type="button" value="登 录"
+                                                                               style="width:150px;" id="login"
+                                                                               class="button_blue"/></div>
                     </form>
                 </div>
             </div>
@@ -47,121 +53,202 @@
     </div>
     <!--注册-->
     <div class="qlogin" id="qlogin" style="display: none; ">
-        <div class="web_login"><form name="form2" id="regUser" accept-charset="utf-8"  action="" method="post">
-            <input type="hidden" name="to" value="reg"/>
-            <input type="hidden" name="did" value="0"/>
-            <ul class="reg_form" id="reg-ul">
-                <div id="userCue" class="cue">快速注册请注意格式</div>
-                <li>
-                    <label for="realName"  class="input-tips2">用户名：</label>
-                    <div class="inputOuter2">
-                        <input type="text" id="realName" name="user" maxlength="16" class="inputstyle2"  placeholder="请输入用户名"/>
-                    </div>
+        <div class="web_login">
+            <form id="regist">
+                <input type="hidden" name="to" value="reg"/>
+                <input type="hidden" name="did" value="0"/>
+                <ul class="reg_form" id="reg-ul">
+                    <div id="userCue" class="cue">快速注册请注意格式</div>
+                    <li>
+                       <label for="realName" class="input-tips2">用户名：</label>
+                        <div class="inputOuter2">
+                            <input type="text" id="realName" name="realName" maxlength="16" class="inputstyle2"
+                                   placeholder="请输入用户名"/>
+                        </div>
 
-                </li>
-                <li>
-                    <label for="loginNames"  class="input-tips2">登录名：</label>
-                    <div class="inputOuter2">
-                        <input type="text" id="loginNames" name="loginName" maxlength="16" class="inputstyle2" placeholder="请输入登录名"/>
-                    </div>
+                    </li>
+                    <li>
+                       <label for="loginNames" class="input-tips2">登录名：</label>
+                        <div class="inputOuter2">
+                            <input type="text" id="loginNames" name="loginNames" maxlength="16" class="inputstyle2"
+                                   placeholder="请输入登录名"/>
+                        </div>
 
-                </li>
-                <li>
-                    <label for="pwd" class="input-tips2">密码：</label>
-                    <div class="inputOuter2">
-                        <input type="password" id="pwd"  name="pwd" maxlength="16" class="inputstyle2" placeholder="请输入密码"/>
-                    </div>
-                </li>
-                <li>
-                    <label for="phone" class="input-tips2">联系电话：</label>
-                    <div class="inputOuter2">
-                        <input type="text" id="phone" name="phone" maxlength="16" class="inputstyle2" placeholder="请输入联系电话"/>
-                    </div>
-                </li>
-                <li>
-                    <label for="email" class="input-tips2">邮箱：</label>
-                    <div class="inputOuter2">
-                        <input type="text" id="email" name="eamil" maxlength="16" class="inputstyle2" placeholder="请输入联系电话"/>
-                    </div>
-                </li>
-                <li>
-                    <div class="inputArea">
-                        <input type="button" id="reg"  style="margin-top:10px;margin-left:85px;" class="button_blue" value="同意协议并注册"/> <a href="#" class="zcxy" target="_blank">注册协议</a>
-                    </div>
-                </li><div class="cl"></div>
-            </ul></form>
+                    </li>
+                    <li>
+                       <label for="pwd" class="input-tips2">密码：</label>
+                        <div class="inputOuter2">
+                            <input type="password" id="pwd" name="pwd" maxlength="16" class="inputstyle2"
+                                   placeholder="请输入密码"/>
+                        </div>
+                    </li>
+                    <li>
+                       <label for="phone" class="input-tips2">联系电话：</label>
+                        <div class="inputOuter2">
+                            <input type="text" id="phone" name="phone" maxlength="16" class="inputstyle2"
+                                   placeholder="请输入联系电话"/>
+                        </div>
+                    </li>
+                    <li>
+                       <label for="email" class="input-tips2">邮箱：</label>
+                        <div class="inputOuter2">
+                            <input type="text" id="email" name="email"  class="inputstyle2"
+                                   placeholder="请输入联系电话"/>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="inputArea">
+                            <input type="button" id="registUser" style="margin-top:10px;margin-left:85px;" class="button_blue"
+                                   value="同意协议并注册"/> <a href="#" class="zcxy" target="_blank">注册协议</a>
+                        </div>
+                    </li>
+                    <div class="cl"></div>
+                </ul>
+            </form>
         </div>
     </div>
     <!--注册end-->
 </div>
 </body>
 <script>
-    $().ready(function() {
-        jQuery.validator.addMethod("loginName", function(value, element) {
-            var ln=/^[a-zA-Z0-9_]{2,18}$/;
+    $().ready(function () {
+        //登录校验
+        jQuery.validator.addMethod("loginName", function (value, element) {
+            var ln = /^[a-zA-Z0-9_]{2,18}$/;
             return this.optional(element) || (ln.test(value));
         }, "请输入正确的用户名");
         $("#login_form").validate({
             //规则
             rules: {
                 loginName: {
-                    required:true,
+                    required: true,
                     minlength: 1
                 },
-                password:{
-                    required:true,
-                    minlength:1
+                password: {
+                    required: true,
+                    minlength: 1
                 }
             },
             //提示语
             messages: {
-                loginName :{
-                    required:"登录名不能为空"
+                loginName: {
+                    required: "登录名不能为空"
                 },
                 password: {
-                   required:"密码不能为空"
+                    required: "密码不能为空"
+                }
+            }
+        });
+        //注册校验
+        jQuery.validator.addMethod("loginNames", function (value, element) {
+            var ln = /^[a-zA-Z0-9_]{2,18}$/;
+            return this.optional(element) || (ln.test(value));
+        }, "请输入正确的用户名");
+        jQuery.validator.addMethod("phone", function(value, element) {
+            var tel = /^1\d{10}$/;
+            var mo=/^0\d{2,3}-?\d{7,8}$/;
+            var mol=/^[0-9]{8}$ /;
+            return this.optional(element) || (tel.test(value))||(mo.test(value))||(mol.test(value));
+        }, "请输入正确的联系电话。");
+
+        jQuery.validator.addMethod("email", function(value, element) {
+            var tel = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+            return this.optional(element) || (tel.test(value));
+        }, "请输入规范的电子邮箱。");
+        $("#regist").validate({
+            //规则
+            rules: {
+                loginNames: {
+                    required: true,
+                    minlength: 1
+                },
+                realName: {
+                    required: true,
+                    minlength: 1
+                },
+                pwd: {
+                    required: true,
+                    minlength: 1
+                },
+                phone: {
+                    required: true,
+                },
+                email: {
+                    required: true,
+                }
+            },
+            //提示语
+            messages: {
+                loginNames: {
+                    required: "登录名不能为空"
+                },
+                realName :{
+                    required: "用户名不能为空"
+                },
+                pwd: {
+                    required: "密码不能为空"
+                },
+                phone: {
+                    required:"请输入正确的联系电话。"
+                },
+                email : {
+                    required: "请输入规范的电子邮箱。"
                 }
             }
         });
     });
-    $().ready(function() {
-        $('#login').click(function() {
+    $().ready(function () {
+        $('#login').click(function () {
             var loginName = $("#loginName").val();
             var password = $("#password").val();
-            if(!$("#login_form").valid()) {
+            if (!$("#login_form").valid()) {
                 return;
             }
             $.ajax({
                 url: '${ctx}/login/loginInto',
                 type: 'post',
                 dataType: 'json',
-                data:{"loginName":loginName,"password":password},
-                success: function(data) {
+                data: {"loginName": loginName, "password": password},
+                success: function (data) {
                     debugger;
                     if (data.success == 0) {
-                        window.location.href="${ctx}/system/userList";
-                    }else {
+                        window.location.href = "${ctx}/system/userList";
+                    } else {
                         alert("用户名或者密码错误,请重新输入");
                     }
                 }
             });
         });
-        $('#reg').click(function(){
-            var realName=$('#realName').val();
-            var loginName=$('#loginNames').val();
-            var password=$('#password').val();
-            var phoneOne=$('#phone').val();
-            var email=$('#email').val();
+        $('#registUser').click(function () {
+            var realName = $('#realName').val();
+            var loginName = $('#loginNames').val();
+            alert(loginName);
+            var pwd = $('#pwd').val();
+            var phoneOne = $('#phone').val();
+            var email = $('#email').val();
+            if (!$("#regist").valid()) {
+                return;
+            }
             $.ajax({
-                url:'${ctx}/login/registUser',
-                type:'post',
-                dataType:'json',
-                data:{"realName":realName,"loginName":loginName,"password":password,"phoneOne":phoneOne,"email":email},
+                url: '${ctx}/login/registUser',
+                type: 'post',
+                dataType: 'json',
+                data: {
+                    "realName": realName,
+                    "loginName": loginName,
+                    "password": password,
+                    "phoneOne": phoneOne,
+                    "email": email
+                },
                 success: function (data) {
-                    if(data.success){
+                    if (data.success == true) {
                         //刷新页面进入登录
-                     window.location.reload();
-                    }else{
+                        window.location.reload();
+                    }
+                    if (data.false == false) {
+                        alert("该用户名已存在!");
+                    }
+                    if (data.fail == false) {
                         alert("添加失败");
                     }
                 }

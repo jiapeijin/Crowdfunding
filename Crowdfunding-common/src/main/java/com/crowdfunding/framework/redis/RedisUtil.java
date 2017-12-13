@@ -39,6 +39,7 @@ public class RedisUtil {
     private static final int MAX_WAIT = Integer.parseInt(PropertiesLoader.getConfig("redis.max_wait"));
 
     //等待响应时间
+
     private static final int TIMEOUT = Integer.parseInt(PropertiesLoader.getConfig("redis.timeout"));
 
     //在borrow一个jedis实例时，是否提前进行validate操作；如果为true，则得到的jedis实例均是可用的；

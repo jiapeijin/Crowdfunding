@@ -23,9 +23,11 @@ public class BaseService implements java.io.Serializable {
     protected <T extends BaseEntity<T>> T preInsert(T entity) {
         entity.setId(IdGen.getId());
         entity.setCreateDate(new Date());
-        entity.setCreateUser(userInfo.getLoginName());
         entity.setUpdateDate(new Date());
-        entity.setUpdateUser(userInfo.getLoginName());
+        if(userInfo != null){
+            entity.setCreateUser(userInfo.getLoginName());
+            entity.setUpdateUser(userInfo.getLoginName());
+        }
         entity.setDelFlag("0");
         return entity;
     }
